@@ -1,9 +1,9 @@
-name: Generate Snake Animation
+name: Generate Snake Animation 🐍
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # runs every day at midnight UTC
-  workflow_dispatch:  # allows manual trigger
+    - cron: "0 0 * * *" # every day at midnight
+  workflow_dispatch:     # allows manual trigger
 
 jobs:
   generate:
@@ -20,4 +20,4 @@ jobs:
         with:
           author_name: github-actions
           author_email: github-actions@github.com
-          message: "Generate snake animation"
+          message: "Generated Snake Animation"
