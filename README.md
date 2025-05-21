@@ -1,4 +1,4 @@
-<h2 align="left">Hi 👋! My name is Shivam and I'm a Pre-Final Year Computer Science Engineering Student</h2>
+<h2 align="left">Hi 👋! My name is Shivam and I'm a Pre-Final Year Computer Science Engineering Students</h2>
 
 
 ###
