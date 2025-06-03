@@ -47,4 +47,3 @@
 
 ## 🐍 Contribution Snake
 
-![Snake animation](https://github.com/Shivam0713/Shivam0713/blob/output/github-contribution-grid-snake.svg)
