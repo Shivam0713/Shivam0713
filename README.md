@@ -1,49 +1,68 @@
 <h2 align="left">Hi 👋! My name is Shivam and I'm a Pre-Final Year Computer Science Engineering Students</h2>
+<h3 align="center">A passionate Web Developer | Cybersecurity Enthusiast | Blockchain Explorer</h3>
 
+<img align="right" alt="Coding" width="350" src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif">
 
-###
+---
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=maurodesouza&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" height="150" alt="stats graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=maurodesouza&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false" height="150" alt="languages graph"  />
-</div>
+### 👨‍💻 About Me:
 
-###
+- 🌐 I'm a **Web Developer** who loves building cool and responsive web apps  
+- 💻 Programming languages: `C`, `Java`, `HTML`, `CSS`, `JavaScript`, `SQL`  
+- 🌱 Currently working with `React.js`  
+- 🔧 Created multiple projects using core `HTML`, `CSS`, and `JavaScript`  
+- 🛡️ Passionate about: `Cybersecurity`, `Blockchain Technology`  
+- 🤖 Exploring: `AI/ML`, with tools like `Pandas`, `OpenCV`  
+- 📫 Reach me at: **[shivam@example.com]** (Update with your real email)
 
-<img align="right" height="150" src="https://i.imgflip.com/65efzo.gif"  />
+---
 
-###
+### 🚀 Tech Stack & Tools:
 
-<div align="left">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="30" alt="javascript logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="30" alt="typescript logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="30" alt="react logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="30" alt="html5 logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="30" alt="css3 logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="30" alt="python logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="30" alt="csharp logo"  />
-</div>
+![C](https://img.shields.io/badge/-C-00599C?style=for-the-badge&logo=c)
+![Java](https://img.shields.io/badge/-Java-007396?style=for-the-badge&logo=java)
+![HTML](https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5)
+![CSS](https://img.shields.io/badge/-CSS3-1572B6?style=for-the-badge&logo=css3)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000)
+![React](https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react)
+![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=for-the-badge&logo=mysql)
+![Pandas](https://img.shields.io/badge/-Pandas-150458?style=for-the-badge&logo=pandas)
+![OpenCV](https://img.shields.io/badge/-OpenCV-5C3EE8?style=for-the-badge&logo=opencv)
 
-###
+---
 
-<div align="left">
-  <img src="https://img.shields.io/static/v1?message=Youtube&logo=youtube&label=&color=FF0000&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="youtube logo"  />
-  <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="instagram logo"  />
-  <img src="https://img.shields.io/static/v1?message=Twitch&logo=twitch&label=&color=9146FF&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="twitch logo"  />
-  <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="discord logo"  />
-  <img src="https://img.shields.io/static/v1?message=Gmail&logo=gmail&label=&color=D14836&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="gmail logo"  />
-  <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="linkedin logo"  />
-</div>
+### 📊 GitHub Stats:
 
-###
+<p align="center">
+  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=Shivam0713&show_icons=true&theme=radical" />
+  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com?user=Shivam0713&theme=radical" />
+</p>
 
-<br clear="both">
+<p align="center">
+  <img width="60%" src="https://github-readme-activity-graph.vercel.app/graph?username=Shivam0713&theme=rogue" />
+</p>
 
-## 🐍 Contribution Snake
+---
 
+### 🐍 Snake Eating Contribution Graph
+
+![snake gif](https://raw.githubusercontent.com/Shivam0713/Shivam0713/output/github-contribution-grid-snake.svg)
+
+---
+
+### 🧠 Currently Learning:
+
+- 🌐 Advanced React & component design patterns  
+- 🤖 AI/ML using Python (Pandas, OpenCV, NumPy)  
+- 🔒 Blockchain concepts & cybersecurity fundamentals  
+- 🧩 Building smarter & interactive UI/UX systems
+
+---
+
+### 📂 Highlight Projects:
+> Add your deployed project links here (e.g., portfolio, weather app, game, etc.)
+
+```md
+🔗 [My Portfolio Website](https://your-portfolio-link.com)  
+🌦️ [Weather App](https://your-weather-app-link.com)  
+🎮 [JS Game Project](https://your-game-link.com)
