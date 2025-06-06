@@ -13,7 +13,7 @@
 - 🔧 Created multiple projects using core `HTML`, `CSS`, and `JavaScript`  
 - 🛡️ Passionate about: `Cybersecurity`, `Blockchain Technology`  
 - 🤖 Exploring: `AI/ML`, with tools like `Pandas`, `OpenCV`  
-- 📫 Reach me at: **[shivamkumar0713@gmail.com]** (Update with your real email)
+- 📫 Reach me at: **[shivamkumar0713@gmail.com]** 
 
 ---
 
@@ -68,7 +68,7 @@
 > Add your deployed project links here (e.g., portfolio, weather app, game, etc.)
 
 ```md
-🔗 [My Portfolio Website](https://your-portfolio-link.com)  
+🔗 [My Portfolio Website](https://your-portfolio-link.com) Availaible Soon 
 🌦️ [Weather App](https://your-weather-app-link.com)  
 🎮 [JS Game Project](https://your-game-link.com)
 
