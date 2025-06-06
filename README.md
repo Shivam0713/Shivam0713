@@ -46,7 +46,8 @@
 
 ### 🐍 Snake Eating Contribution Graph
 
-![snake gif](https://raw.githubusercontent.com/Shivam0713/Shivam0713/output/github-contribution-grid-snake.svg)
+
+![snake gif](https://github.com/Shivam0713/Shivam0713/blob/output/github-contribution-grid-snake.gif)
 
 ---
 
@@ -66,3 +67,4 @@
 🔗 [My Portfolio Website](https://your-portfolio-link.com)  
 🌦️ [Weather App](https://your-weather-app-link.com)  
 🎮 [JS Game Project](https://your-game-link.com)
+
