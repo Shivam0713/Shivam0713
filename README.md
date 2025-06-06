@@ -13,7 +13,7 @@
 - 🔧 Created multiple projects using core `HTML`, `CSS`, and `JavaScript`  
 - 🛡️ Passionate about: `Cybersecurity`, `Blockchain Technology`  
 - 🤖 Exploring: `AI/ML`, with tools like `Pandas`, `OpenCV`  
-- 📫 Reach me at: **[shivam@example.com]** (Update with your real email)
+- 📫 Reach me at: **[shivamkumar0713@gmail.com]** (Update with your real email)
 
 ---
 
