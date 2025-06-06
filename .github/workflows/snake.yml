@@ -1,17 +1,8 @@
-
----
-
-### 🐍 Snake Animation Setup Reminder
-
-1. Create `.github/workflows/snake.yml` in your profile repo.
-2. Use this content:
-
-```yaml
 name: Generate Snake
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *"  # Every day at midnight
   workflow_dispatch:
 
 jobs:
