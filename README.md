@@ -52,7 +52,6 @@
   <img alt="github-snake" src="https://raw.githubusercontent.com/Shivam0713/Shivam0713/output/github-snake.svg" />
 </picture>
 
-
 ---
 
 ### 🧠 Currently Learning:
