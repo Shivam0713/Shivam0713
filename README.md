@@ -1,4 +1,4 @@
-<h2 align="left">Hi 👋! My name is Shivam and I'm a Pre-Final Year Computer Science Engineering Students</h2>
+<h2 align="left">Hi 👋! My name is Shivam and I'm a Pre-Final Year Computer Science Engineering Student</h2>
 <h3 align="center">A passionate Web Developer | Cybersecurity Enthusiast | Blockchain Explorer</h3>
 
 <img align="right" alt="Coding" width="350" src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif">
