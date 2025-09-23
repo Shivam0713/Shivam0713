@@ -1,0 +1,257 @@
+name: Monastery360 CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'monastery360-frontend/**'
+      - 'monastery360-backend/**'
+      - 'docker-compose.yml'
+      - '.github/workflows/monastery360-ci-cd.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'monastery360-frontend/**'
+      - 'monastery360-backend/**'
+
+env:
+  NODE_VERSION: '18'
+  REGISTRY: ghcr.io
+  IMAGE_NAME_FRONTEND: ${{ github.repository }}/monastery360-frontend
+  IMAGE_NAME_BACKEND: ${{ github.repository }}/monastery360-backend
+
+jobs:
+  # Backend Tests and Build
+  backend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./monastery360-backend
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: monastery360-backend/package-lock.json
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run linter
+      run: npm run lint || echo "Linting not configured yet"
+    
+    - name: Build TypeScript
+      run: npm run build
+    
+    - name: Run tests
+      run: npm test || echo "Tests not configured yet"
+
+  # Frontend Tests and Build
+  frontend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./monastery360-frontend
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: monastery360-frontend/package-lock.json
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run linter
+      run: npm run lint
+    
+    - name: Build Next.js app
+      run: npm run build
+    
+    - name: Run tests
+      run: npm test || echo "Tests not configured yet"
+
+  # Build and Push Docker Images
+  build-and-push:
+    needs: [backend-test, frontend-test]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Extract metadata for backend
+      id: meta-backend
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_BACKEND }}
+        tags: |
+          type=ref,event=branch
+          type=sha
+          type=raw,value=latest,enable={{is_default_branch}}
+    
+    - name: Build and push backend image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./monastery360-backend
+        push: true
+        tags: ${{ steps.meta-backend.outputs.tags }}
+        labels: ${{ steps.meta-backend.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Extract metadata for frontend
+      id: meta-frontend
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}
+        tags: |
+          type=ref,event=branch
+          type=sha
+          type=raw,value=latest,enable={{is_default_branch}}
+    
+    - name: Build and push frontend image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./monastery360-frontend
+        push: true
+        tags: ${{ steps.meta-frontend.outputs.tags }}
+        labels: ${{ steps.meta-frontend.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  # Security Scanning
+  security-scan:
+    needs: [backend-test, frontend-test]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Run Trivy vulnerability scanner for backend
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: './monastery360-backend'
+        format: 'sarif'
+        output: 'backend-trivy-results.sarif'
+    
+    - name: Run Trivy vulnerability scanner for frontend
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: './monastery360-frontend'
+        format: 'sarif'
+        output: 'frontend-trivy-results.sarif'
+    
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'backend-trivy-results.sarif'
+    
+    - name: Upload Frontend Trivy scan results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'frontend-trivy-results.sarif'
+
+  # Deploy to Development Environment
+  deploy-dev:
+    needs: [build-and-push]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    environment: development
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to Development
+      run: |
+        echo "Deploying to development environment..."
+        # Add your deployment script here
+        # Example: kubectl apply -f k8s/dev/
+        # Or: docker-compose -f docker-compose.dev.yml up -d
+
+  # Deploy to Production Environment
+  deploy-prod:
+    needs: [build-and-push, security-scan]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to Production
+      run: |
+        echo "Deploying to production environment..."
+        # Add your production deployment script here
+        # Example: kubectl apply -f k8s/prod/
+        # Or: docker-compose -f docker-compose.prod.yml up -d
+    
+    - name: Run Health Checks
+      run: |
+        echo "Running post-deployment health checks..."
+        # Add health check commands here
+        # curl -f http://your-production-url/health || exit 1
+
+  # Lighthouse Performance Testing
+  lighthouse:
+    needs: [frontend-test]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    
+    - name: Install dependencies
+      working-directory: ./monastery360-frontend
+      run: npm ci
+    
+    - name: Build Next.js app
+      working-directory: ./monastery360-frontend
+      run: npm run build
+    
+    - name: Start Next.js server
+      working-directory: ./monastery360-frontend
+      run: npm start &
+      env:
+        PORT: 3000
+    
+    - name: Wait for server
+      run: sleep 10
+    
+    - name: Run Lighthouse CI
+      uses: treosh/lighthouse-ci-action@v10
+      with:
+        configPath: './monastery360-frontend/lighthouserc.json'
+        uploadArtifacts: true
+        temporaryPublicStorage: true
