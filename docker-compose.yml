@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: monastery360-postgres
+    environment:
+      POSTGRES_DB: monastery360
+      POSTGRES_USER: monastery_user
+      POSTGRES_PASSWORD: monastery_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - monastery360-network
+
+  # MongoDB Database
+  mongodb:
+    image: mongo:7-jammy
+    container_name: monastery360-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: monastery_user
+      MONGO_INITDB_ROOT_PASSWORD: monastery_password
+      MONGO_INITDB_DATABASE: monastery360
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - monastery360-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./monastery360-backend
+      dockerfile: Dockerfile
+    container_name: monastery360-backend
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      FRONTEND_URL: http://localhost:3000
+      DATABASE_URL: postgresql://monastery_user:monastery_password@postgres:5432/monastery360
+      MONGODB_URL: mongodb://monastery_user:monastery_password@mongodb:27017/monastery360
+      JWT_SECRET: monastery360-super-secret-production-key
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+      - mongodb
+    networks:
+      - monastery360-network
+    volumes:
+      - ./monastery360-backend/.env:/app/.env
+    restart: unless-stopped
+
+  # Frontend Application
+  frontend:
+    build:
+      context: ./monastery360-frontend
+      dockerfile: Dockerfile
+    container_name: monastery360-frontend
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - monastery360-network
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy (Optional)
+  nginx:
+    image: nginx:alpine
+    container_name: monastery360-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - monastery360-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  mongodb_data:
+
+networks:
+  monastery360-network:
+    driver: bridge
